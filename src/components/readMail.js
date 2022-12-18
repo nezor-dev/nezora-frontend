@@ -4,13 +4,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
-export default function ReadDocuments() {
+export default function ReadMail() {
     const [APIData, setAPIData] = useState([]);
     let navigate = useNavigate();
     useEffect(() => {
-        axios.get(`http://` + process.env.REACT_APP_BACKENDHOST+`/documents`)
+        axios.get(`http://` + process.env.REACT_APP_BACKENDHOST+`/mails`)
             .then((response) => {
-                setAPIData(response.data);
+                setAPIData(response.data.data);
             })
     }, [])
     const setData = (data) => {
@@ -28,21 +28,21 @@ export default function ReadDocuments() {
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://` + process.env.REACT_APP_BACKENDHOST+`/documents/${id}`)
+        axios.delete(`http://` + process.env.REACT_APP_BACKENDHOST+`/mail/`,{data:{ID: id}})
             .then(() => {
                 getData();
             })
     }
     const getData = () => {
-        axios.get(`http://` + process.env.REACT_APP_BACKENDHOST+`/documents`)
+        axios.get(`http://` + process.env.REACT_APP_BACKENDHOST+`/mails`)
             .then((getData) => {
-                setAPIData(getData.data);
+                setAPIData(getData.data.data);
             })
     }
     return (
         <div>
             <h3>Documents</h3>
-            <Link to='/documents/create'><Button>Create</Button></Link>
+            <Link to='/mail/create'><Button>Create</Button></Link>
             <Table singleLine>
                 <Table.Header>
                     <Table.Row>
@@ -63,7 +63,7 @@ export default function ReadDocuments() {
                                 <Table.Cell>{data.date}</Table.Cell>
                                 <Table.Cell>{data.sender}</Table.Cell>
                                 <Table.Cell>
-                                    <Link to='/documents/update'>
+                                    <Link to='/mail/update'>
                                         <Button onClick={() => setData(data)}>Update</Button>
                                     </Link>
                                 </Table.Cell>

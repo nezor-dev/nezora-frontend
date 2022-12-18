@@ -8,7 +8,7 @@ export default function CreateBookmark() {
     const [url, setUrl] = useState('');
     let navigate = useNavigate();
     const postData = () => {
-        axios.post(`http://` + process.env.REACT_APP_BACKENDHOST+`/bookmarks`, {
+        axios.post(`http://` + process.env.REACT_APP_BACKENDHOST+`/bookmark`, {
             name,
             url
         }).then(() => {

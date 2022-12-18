@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 
-export default function CreateDocuments() {
+export default function CreateMail() {
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
     const [content, setContent] = useState('');
@@ -13,14 +13,14 @@ export default function CreateDocuments() {
 
     let navigate = useNavigate();
     const postData = () => {
-        axios.post(`http://` + process.env.REACT_APP_BACKENDHOST + `/documents`, {
+        axios.post(`http://` + process.env.REACT_APP_BACKENDHOST + `/mail`, {
             name,
             image,
             content,
             date,
             sender
         }).then(() => {
-            navigate('/documents/')
+            navigate('/mails/')
         })
     }
     const convertBase64 = (file) => {

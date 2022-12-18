@@ -15,7 +15,8 @@ export default function UpdateBookmark() {
     }, []);
     let navigate = useNavigate();
     const updateAPIData = () => {
-        axios.put(`http://` + process.env.REACT_APP_BACKENDHOST + `/bookmarks/${id}`, {
+        axios.put(`http://` + process.env.REACT_APP_BACKENDHOST + `/bookmark/`, {
+            id,
             name,
             url,
         }).then(() => {

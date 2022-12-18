@@ -3,7 +3,7 @@ import { Button, Form, StepContent } from 'semantic-ui-react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function UpdateBookmark() {
+export default function UpdateMail() {
     const [id, setID] = useState('');
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
@@ -21,19 +21,20 @@ export default function UpdateBookmark() {
     }, []);
     let navigate = useNavigate();
     const updateAPIData = () => {
-        axios.put(`http://` + process.env.REACT_APP_BACKENDHOST + `/documents/${id}`, {
+        axios.put(`http://` + process.env.REACT_APP_BACKENDHOST + `/mail/`, {
+            id,
             name,
             image,
             content,
-            data,
+            date,
             sender,
         }).then(() => {
-            navigate('/documents/')
+            navigate('/mails/')
         })
     }
     const openPDF = (data) => {
         let pdfWindow = window.open("")
-        pdfWindow.document.write("<object title=''  width='100%' height='100%' data='" + encodeURI(data) + "'></object>")
+        pdfWindow.document.write("<object title='"+ data.name +"'  width='100%' height='100%' data='" + encodeURI(image) + "'></object>")
     }
     const convertBase64 = (file) => {
         return new Promise((resolve, reject) => {

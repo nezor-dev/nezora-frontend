@@ -4,11 +4,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 export default function ReadBookmark() {
     const [APIData, setAPIData] = useState([]);
-    console.log(process.env.REACT_APP_BACKENDHOST)
     useEffect(() => {
         axios.get(`http://` + process.env.REACT_APP_BACKENDHOST+`/bookmarks`)
             .then((response) => {
-                setAPIData(response.data);
+                setAPIData(response.data.data);
             })
     }, [])
     const setData = (data) => {
@@ -18,7 +17,7 @@ export default function ReadBookmark() {
         localStorage.setItem('url', url);
     }
     const onDelete = (id) => {
-        axios.delete(`http://` + process.env.REACT_APP_BACKENDHOST+`/bookmarks/${id}`)
+        axios.delete(`http://` + process.env.REACT_APP_BACKENDHOST+`/bookmark`,{data:{ID: id}})
             .then(() => {
                 getData();
             })
@@ -26,7 +25,7 @@ export default function ReadBookmark() {
     const getData = () => {
         axios.get(`http://` + process.env.REACT_APP_BACKENDHOST+`/bookmarks`)
             .then((getData) => {
-                setAPIData(getData.data);
+                setAPIData(getData.data.data);
             })
     }
     return (

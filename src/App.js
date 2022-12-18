@@ -3,10 +3,10 @@ import './App.css';
 import CreateBookmark from './components/createBookmark';
 import ReadBookmark from './components/readBookmark';
 import UpdateBookmark from './components/updateBookmark';
-import ReadDocuments from './components/readDocuments'
-import CreateDocuments from './components/createDocument';
-import UpdateDocuments from './components/updateDocuments';
 import { Routes, Route } from "react-router-dom";
+import ReadMail from './components/readMail';
+import CreateMail from './components/createMail';
+import UpdateMail from './components/updateMail';
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
           <Route path='/bookmark/' element={<ReadBookmark />} />
           <Route path='/bookmark/create' element={<CreateBookmark />} />
           <Route path='/bookmark/update' element={<UpdateBookmark />} />
-          <Route path='/documents/' element={<ReadDocuments />} />
-          <Route path='/documents/create' element={<CreateDocuments/>} />
-          <Route path='/documents/update' element={<UpdateDocuments/>} />
+          <Route path='/mails/' element={<ReadMail />} />
+          <Route path='/mail/create' element={<CreateMail/>} />
+          <Route path='/mail/update' element={<UpdateMail/>} />
         </Routes>
       </div>
 
